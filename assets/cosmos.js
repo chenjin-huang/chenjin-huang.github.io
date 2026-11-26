@@ -336,3 +336,16 @@
     createCosmos(c, { scene: d.scene, x: d.x, y: d.y, size: d.size, tilt: d.tilt, stars: d.stars, speed: d.speed });
   });
 })();
+
+// Open links to other websites (GitHub, LinkedIn, Medium, ...) in a new tab.
+// Links inside cjhuanglab.com and email links keep working as normal.
+(function () {
+  document.querySelectorAll('a[href]').forEach(function (a) {
+    var url;
+    try { url = new URL(a.getAttribute('href'), location.href); } catch (e) { return; }
+    if ((url.protocol === 'http:' || url.protocol === 'https:') && url.hostname !== location.hostname) {
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+    }
+  });
+})();
